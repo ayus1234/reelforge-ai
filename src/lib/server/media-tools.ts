@@ -3,7 +3,6 @@ import { mkdtemp, readFile, rm, writeFile } from 'fs/promises';
 import { tmpdir } from 'os';
 import path from 'path';
 
-// @ts-expect-error - no types available
 import ffmpegPath from 'ffmpeg-static';
 // @ts-expect-error - no types available
 import ffprobeStatic from 'ffprobe-static';
@@ -21,7 +20,7 @@ interface NormalizedAudio {
 
 function getBinaryPath(kind: 'ffmpeg' | 'ffprobe'): string {
   if (kind === 'ffmpeg') {
-    return process.env.FFMPEG_BIN || ffmpegPath;
+    return process.env.FFMPEG_BIN || ffmpegPath || 'ffmpeg';
   }
 
   return process.env.FFPROBE_BIN || ffprobeStatic.path;
