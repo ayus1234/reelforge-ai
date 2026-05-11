@@ -11,8 +11,9 @@ Content creation is currently bottlenecked by the extreme technical friction of 
 🚀 **[Experience ReelForge AI Live](https://reelforge-ai-delta.vercel.app)**
 
 <div align="center">
-  <img src="docs/screenshots/demo.gif" alt="ReelForge AI Demo" width="800" />
-  <p><em>(Note: Record a quick screen capture of the UI in action and save it as <code>docs/screenshots/demo.gif</code> to display it here!)</em></p>
+  <video width="800" controls autoplay loop muted>
+    <source src="docs/demo_video/Reinforced%20AI%20Creates%20Viral%20Reels%20in%20Minutes.mp4" type="video/mp4">
+  </video>
 </div>
 
 ## Screenshots
