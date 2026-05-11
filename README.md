@@ -1,12 +1,19 @@
 # ReelForge AI
 
-ReelForge AI is a Next.js app that turns a content idea into a short-form reel pipeline: script, scene prompts, storyboard images, animated video clips, narration, background sound, viral scoring, and MP4 export.
+ReelForge AI is an autonomous creative studio designed to transform a simple text idea into a polished, production-ready short-form video (Reel/TikTok/Short) in minutes. Built with Next.js, our platform uses a 6-agent AI pipeline to automatically write viral scripts, direct cinematic scenes, generate visual storyboards, animate video clips, mix audio, and analyze the final output for viral potential before exporting it as a seamlessly concatenated MP4.
 
-The app is built for creator-style reels with real-time pipeline progress and format support for vertical reels and widescreen videos.
+### 🌟 Why This Matters
 
-## Live Demo
+Content creation is currently bottlenecked by the extreme technical friction of video editing, specialized prompting, and audio mixing. ReelForge AI abstracts away this entire complexity layer. By orchestrating powerful multi-modal models (Text-to-Image, Image-to-Video, Text-to-Speech) in parallel, it empowers creators, marketers, and developers to scale their ideas into high-quality, viral-ready videos effortlessly.
+
+## Live Demo & Preview
 
 🚀 **[Experience ReelForge AI Live](https://reelforge-ai-delta.vercel.app)**
+
+<div align="center">
+  <img src="docs/screenshots/demo.gif" alt="ReelForge AI Demo" width="800" />
+  <p><em>(Note: Record a quick screen capture of the UI in action and save it as <code>docs/screenshots/demo.gif</code> to display it here!)</em></p>
+</div>
 
 ## Screenshots
 
@@ -65,16 +72,63 @@ Narration voice is selected automatically from the reel style, topic, script tex
 
 The old energetic male preset `Elliot` is no longer used by the app's context-aware voice selection. It remains only in the low-level Runway preset allowlist because it is still a valid provider preset.
 
-## Pipeline
+## Agent Flow Pipeline
 
-1. Script Writer creates a short-form script, CTA, and four timed scene beats.
-2. Scene Director turns each beat into visual prompts, camera direction, lighting, and mood.
-3. Storyboard Generator creates image frames with Runway Text-to-Image.
-4. Video Producer animates storyboard frames with Runway Image-to-Video.
-5. Audio Producer creates narration and background SFX, then normalizes narration duration.
-6. Viral Optimizer scores the result and suggests improvements.
+ReelForge AI orchestrates its agents in parallel where possible, maximizing speed and efficiency.
 
-Default reel timing is four scenes at five seconds each, for a 20 second reel.
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant SW as ✍️ Script Writer
+    participant SD as 🎬 Scene Director
+    participant SG as 🎨 Storyboard
+    participant VP as 🎥 Video Producer
+    participant AP as 🔊 Audio Producer
+    participant VO as 📈 Viral Optimizer
+
+    U->>SW: Submits Topic & Style
+    SW->>SD: Generates Hook, Narrative & CTA
+    SD->>SG: Creates Cinematic Prompts (4 Beats)
+    par Visuals
+        SG->>VP: Generates 4 Image Frames
+        VP-->>VP: Animates to Video Clips
+    and Audio
+        SD->>AP: Sends Script for Voiceover
+        AP-->>AP: Normalizes TTS & Mixes SFX
+    end
+    VP->>VO: Passes Video Scenes
+    AP->>VO: Passes Audio Track
+    VO->>U: Scores Viral Potential & Returns MP4
+```
+
+*Default reel timing is four scenes at five seconds each, for a 20 second reel.*
+
+## System Architecture
+
+```mermaid
+graph TD
+    Client[Next.js Client UI] -->|SSE Stream| API[Next.js API Routes]
+    API -->|Topic & Style| Orchestrator[Agent Orchestrator]
+    
+    subgraph Autonomous AI Pipeline
+        Orchestrator --> Script[Script Writer Agent]
+        Script --> Scene[Scene Director Agent]
+        Scene --> Storyboard[Storyboard Generator]
+        Storyboard --> Video[Video Producer]
+        Video --> Audio[Audio Producer]
+        Audio --> Viral[Viral Optimizer]
+    end
+    
+    subgraph External APIs
+        Storyboard -.->|Text-to-Image| Runway[RunwayML API]
+        Video -.->|Image-to-Video| Runway
+        Audio -.->|ElevenLabs TTS & FX| Runway
+    end
+    
+    Video --> Exporter[FFmpeg Serverless Exporter]
+    Audio --> Exporter
+    Exporter -->|Final MP4| Client
+```
 
 ## Tech Stack
 
