@@ -10,8 +10,8 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: '*.googleapis.com' },
     ],
   },
-  // Ensure Runway SDK runs server-side only
-  serverExternalPackages: ['@runwayml/sdk'],
+  // Ensure Runway SDK and media binaries run server-side only
+  serverExternalPackages: ['@runwayml/sdk', 'ffmpeg-static', 'ffprobe-static'],
 };
 
 export default nextConfig;

@@ -3,6 +3,11 @@ import { mkdtemp, readFile, rm, writeFile } from 'fs/promises';
 import { tmpdir } from 'os';
 import path from 'path';
 
+// @ts-expect-error - no types available
+import ffmpegPath from 'ffmpeg-static';
+// @ts-expect-error - no types available
+import ffprobeStatic from 'ffprobe-static';
+
 interface ProcessResult {
   stdout: string;
   stderr: string;
@@ -16,18 +21,10 @@ interface NormalizedAudio {
 
 function getBinaryPath(kind: 'ffmpeg' | 'ffprobe'): string {
   if (kind === 'ffmpeg') {
-    return process.env.FFMPEG_BIN || (
-      process.platform === 'win32'
-        ? 'node_modules/ffmpeg-static/ffmpeg.exe'
-        : 'node_modules/ffmpeg-static/ffmpeg'
-    );
+    return process.env.FFMPEG_BIN || ffmpegPath;
   }
 
-  return process.env.FFPROBE_BIN || (
-    process.platform === 'win32'
-      ? `node_modules/ffprobe-static/bin/win32/${process.arch}/ffprobe.exe`
-      : `node_modules/ffprobe-static/bin/${process.platform}/${process.arch}/ffprobe`
-  );
+  return process.env.FFPROBE_BIN || ffprobeStatic.path;
 }
 
 export function runProcess(binary: string, args: string[], label: string): Promise<ProcessResult> {
