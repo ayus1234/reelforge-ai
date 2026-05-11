@@ -10,7 +10,7 @@ Content creation is currently bottlenecked by the extreme technical friction of 
 
 🚀 **[Experience ReelForge AI Live](https://reelforge-ai-delta.vercel.app)**
 
-<video src="https://github.com/ayus1234/reelforge-ai/raw/main/docs/demo_video/Reinforced%20AI%20Creates%20Viral%20Reels%20in%20Minutes.mp4" controls="controls" width="100%"></video>
+<video src="docs/demo_video/demo.mp4" controls="controls" width="100%"></video>
 
 ## Screenshots
 
