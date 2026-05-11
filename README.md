@@ -6,11 +6,15 @@ ReelForge AI is an autonomous creative studio designed to transform a simple tex
 
 Content creation is currently bottlenecked by the extreme technical friction of video editing, specialized prompting, and audio mixing. ReelForge AI abstracts away this entire complexity layer. By orchestrating powerful multi-modal models (Text-to-Image, Image-to-Video, Text-to-Speech) in parallel, it empowers creators, marketers, and developers to scale their ideas into high-quality, viral-ready videos effortlessly.
 
+---
+
 ## Live Demo
 
 🚀 **[Experience ReelForge AI Live](https://reelforge-ai-delta.vercel.app)**
 
 *Test the live application and watch the autonomous agents generate your video in real-time.*
+
+---
 
 ## Video Preview
 
@@ -19,6 +23,8 @@ Content creation is currently bottlenecked by the extreme technical friction of 
   </video>
   <p><em>A full walkthrough of the ReelForge AI generation pipeline from text prompt to final viral MP4.</em></p>
 </div>
+
+---
 
 ## Application Interface
 
@@ -76,6 +82,8 @@ Content creation is currently bottlenecked by the extreme technical friction of 
 
 *An intelligent breakdown of the video's viral potential, complete with an automated improvement loop for refinement.*
 
+---
+
 ## Features
 
 - Six-step AI creative pipeline with Server-Sent Events progress updates and per-agent completion percentages.
@@ -88,6 +96,8 @@ Content creation is currently bottlenecked by the extreme technical friction of 
 - Viral score dashboard with hook, visual impact, emotional resonance, and pacing feedback.
 - "Make It More Viral" improvement loop that rewrites and regenerates the reel.
 - MP4 export with scene concatenation, optional burned captions, narration, and SFX mixing.
+
+---
 
 ## Voice Selection
 
@@ -102,6 +112,8 @@ Narration voice is selected automatically from the reel style, topic, script tex
 | inspirational | Arjun | Rachel | female |
 
 The old energetic male preset `Elliot` is no longer used by the app's context-aware voice selection. It remains only in the low-level Runway preset allowlist because it is still a valid provider preset.
+
+---
 
 ## Agent Flow Pipeline
 
@@ -134,6 +146,8 @@ sequenceDiagram
 
 *Default reel timing is four scenes at five seconds each, for a 20 second reel.*
 
+---
+
 ## System Architecture
 
 ```mermaid
@@ -161,6 +175,8 @@ graph TD
     Exporter -->|Final MP4| Client
 ```
 
+---
+
 ## Tech Stack
 
 - Next.js 16 App Router
@@ -171,6 +187,8 @@ graph TD
 - FFmpeg and FFprobe via `ffmpeg-static` and `ffprobe-static`
 - Framer Motion
 - Lucide React
+
+---
 
 ## Getting Started
 
@@ -208,6 +226,8 @@ On Windows PowerShell, if execution policy blocks `npm.ps1`, use:
 npm.cmd run dev
 ```
 
+---
+
 ## Scripts
 
 ```bash
@@ -216,6 +236,8 @@ npm run build    # Build production assets and run TypeScript checks
 npm run start    # Start the production server after build
 npm run lint     # Run ESLint
 ```
+
+---
 
 ## API Routes
 
@@ -234,6 +256,8 @@ Generation requests use:
 }
 ```
 
+---
+
 ## Vercel Deployment
 
 This project is optimized for deployment on Vercel's serverless environment, with proper bundling for `ffmpeg-static` binaries. 
@@ -247,12 +271,16 @@ Ensure you have the following Environment Variables set in your Vercel project s
 - `RUNWAYML_API_SECRET`
 - `MOCK_MODE=false`
 
+---
+
 ## Environment Notes
 
 - `RUNWAYML_API_SECRET` is required unless `MOCK_MODE=true`.
 - `MOCK_MODE=true` avoids real Runway calls and returns sample media URLs for local testing.
 - API routes have a 300 second max duration because image, video, audio, and export jobs can take time.
 - Export uses temporary files and cleans them up after the MP4 response is created.
+
+---
 
 ## Project Structure
 
@@ -265,10 +293,14 @@ src/lib/server/           FFmpeg, FFprobe, download, and audio normalization hel
 src/lib/types.ts          Shared request, response, pipeline, and media types
 ```
 
+---
+
 ## Troubleshooting
 
 - **`Cannot find module 'framer-motion'` or `components.ComponentMod.handler is not a function`**: Turbopack's cache may be corrupted. Stop the server, delete the `.next` directory (`rm -rf .next` or `Remove-Item -Recurse -Force .next`), run `npm install`, and restart the dev server.
 - **`listen EADDRINUSE: address already in use 127.0.0.1:3000`**: A previous Next.js server instance is still running in the background. Find the process using port 3000 (`netstat -ano | findstr :3000` on Windows, or `lsof -i :3000` on Mac/Linux) and terminate it.
+
+---
 
 ## Verification
 
