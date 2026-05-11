@@ -10,7 +10,10 @@ Content creation is currently bottlenecked by the extreme technical friction of 
 
 🚀 **[Experience ReelForge AI Live](https://reelforge-ai-delta.vercel.app)**
 
-https://github.com/user-attachments/assets/37cc8abd-9bd4-4852-9465-b4763bfe9dab
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/37cc8abd-9bd4-4852-9465-b4763bfe9dab" controls="controls" width="800" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px; min-height: 200px">
+  </video>
+</div>
 
 ## Screenshots
 
@@ -199,6 +202,19 @@ Generation requests use:
   referenceImageUrl?: string;
 }
 ```
+
+## Vercel Deployment
+
+This project is optimized for deployment on Vercel's serverless environment, with proper bundling for `ffmpeg-static` binaries. 
+
+If GitHub integrations fail or you want to deploy directly from your local terminal, use the Vercel CLI:
+
+```bash
+npx vercel@latest deploy --prod
+```
+Ensure you have the following Environment Variables set in your Vercel project settings:
+- `RUNWAYML_API_SECRET`
+- `MOCK_MODE=false`
 
 ## Environment Notes
 
