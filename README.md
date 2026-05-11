@@ -6,44 +6,55 @@ ReelForge AI is an autonomous creative studio designed to transform a simple tex
 
 Content creation is currently bottlenecked by the extreme technical friction of video editing, specialized prompting, and audio mixing. ReelForge AI abstracts away this entire complexity layer. By orchestrating powerful multi-modal models (Text-to-Image, Image-to-Video, Text-to-Speech) in parallel, it empowers creators, marketers, and developers to scale their ideas into high-quality, viral-ready videos effortlessly.
 
-## Live Demo & Preview
+## Live Demo
 
-🚀 **[Experience ReelForge AI Live](https://reelforge-ai-delta.vercel.app)**
+🚀 **[Experience ReelForge AI Live](https://reelforge-ai-delta.vercel.app)**  
+*Test the live application and watch the autonomous agents generate your video in real-time.*
+
+## Video Preview
 
 <div align="center">
   <video src="https://github.com/user-attachments/assets/37cc8abd-9bd4-4852-9465-b4763bfe9dab" controls="controls" width="800" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px; min-height: 200px">
   </video>
+  <p><em>A full walkthrough of the ReelForge AI generation pipeline from text prompt to final viral MP4.</em></p>
 </div>
 
-## Screenshots
+## Application Interface
 
 ### Home and Idea Input
 
-![ReelForge AI home screen](docs/screenshots/01-home.png)
+![ReelForge AI home screen](docs/screenshots/01-home.png)  
+*A clean, minimalistic landing page where creators input their initial video concepts.*
 
 ### Generation Form
 
-![Generation form with topic, style, format, and upload controls](docs/screenshots/02-generation-form.png)
+![Generation form with topic, style, format, and upload controls](docs/screenshots/02-generation-form.png)  
+*Granular controls allow users to define the cinematic style, aspect ratio (9:16 or 16:9), and provide reference imagery.*
 
 ### Agent Pipeline
 
-![Completed six-agent pipeline](docs/screenshots/03-agent-pipeline.png)
+![Completed six-agent pipeline](docs/screenshots/03-agent-pipeline.png)  
+*Real-time Server-Sent Events (SSE) tracking of all 6 agents working in parallel to build the video.*
 
 ### Generated Video Clips
 
-![Generated reel video clips](docs/screenshots/04-generated-clips.png)
+![Generated reel video clips](docs/screenshots/04-generated-clips.png)  
+*High-fidelity video clips generated via Runway's Image-to-Video models based on the storyboard prompts.*
 
 ### Storyboard, Audio, and Script
 
-![Storyboard, narration audio, background SFX, and script preview](docs/screenshots/05-storyboard-audio-script.png)
+![Storyboard, narration audio, background SFX, and script preview](docs/screenshots/05-storyboard-audio-script.png)  
+*A comprehensive breakdown of the generated script, voiceover timings, and normalized sound effects.*
 
 ### Final Reel Preview
 
-![Final vertical reel preview with playback and download controls](docs/screenshots/06-final-reel-preview.png)
+![Final vertical reel preview with playback and download controls](docs/screenshots/06-final-reel-preview.png)  
+*The final, seamlessly concatenated MP4 reel ready for immediate playback and download.*
 
 ### Viral Analysis
 
-![Viral analysis dashboard with score, suggestions, and improvement loop](docs/screenshots/07-viral-analysis.png)
+![Viral analysis dashboard with score, suggestions, and improvement loop](docs/screenshots/07-viral-analysis.png)  
+*An intelligent breakdown of the video's viral potential, complete with an automated improvement loop for refinement.*
 
 ## Features
 
