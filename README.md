@@ -28,11 +28,15 @@ Content creation is currently bottlenecked by the extreme technical friction of 
 
 *A clean, minimalistic landing page where creators input their initial video concepts.*
 
+---
+
 ### Generation Form
 
 ![Generation form with topic, style, format, and upload controls](docs/screenshots/02-generation-form.png)
 
 *Granular controls allow users to define the cinematic style, aspect ratio (9:16 or 16:9), and provide reference imagery.*
+
+---
 
 ### Agent Pipeline
 
@@ -40,11 +44,15 @@ Content creation is currently bottlenecked by the extreme technical friction of 
 
 *Real-time Server-Sent Events (SSE) tracking of all 6 agents working in parallel to build the video.*
 
+---
+
 ### Generated Video Clips
 
 ![Generated reel video clips](docs/screenshots/04-generated-clips.png)
 
 *High-fidelity video clips generated via Runway's Image-to-Video models based on the storyboard prompts.*
+
+---
 
 ### Storyboard, Audio, and Script
 
@@ -52,11 +60,15 @@ Content creation is currently bottlenecked by the extreme technical friction of 
 
 *A comprehensive breakdown of the generated script, voiceover timings, and normalized sound effects.*
 
+---
+
 ### Final Reel Preview
 
 ![Final vertical reel preview with playback and download controls](docs/screenshots/06-final-reel-preview.png)
 
 *The final, seamlessly concatenated MP4 reel ready for immediate playback and download.*
+
+---
 
 ### Viral Analysis
 
