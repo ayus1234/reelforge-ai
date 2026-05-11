@@ -10,7 +10,7 @@ Content creation is currently bottlenecked by the extreme technical friction of 
 
 🚀 **[Experience ReelForge AI Live](https://reelforge-ai-delta.vercel.app)**
 
-<video src="docs/demo_video/demo.mp4" controls="controls" width="100%"></video>
+<!-- PASTE GITHUB VIDEO LINK HERE -->
 
 ## Screenshots
 
