@@ -163,6 +163,11 @@ src/lib/server/           FFmpeg, FFprobe, download, and audio normalization hel
 src/lib/types.ts          Shared request, response, pipeline, and media types
 ```
 
+## Troubleshooting
+
+- **`Cannot find module 'framer-motion'` or `components.ComponentMod.handler is not a function`**: Turbopack's cache may be corrupted. Stop the server, delete the `.next` directory (`rm -rf .next` or `Remove-Item -Recurse -Force .next`), run `npm install`, and restart the dev server.
+- **`listen EADDRINUSE: address already in use 127.0.0.1:3000`**: A previous Next.js server instance is still running in the background. Find the process using port 3000 (`netstat -ano | findstr :3000` on Windows, or `lsof -i :3000` on Mac/Linux) and terminate it.
+
 ## Verification
 
 Recommended checks before shipping changes:
