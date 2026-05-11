@@ -88,6 +88,7 @@ export interface AgentStep {
   name: string;
   icon: string;
   status: AgentStatus;
+  progress: number;
   description: string;
   output?: unknown;
   startTime?: number;
@@ -112,6 +113,7 @@ export interface SSEEvent {
   type: 'step_update' | 'step_output' | 'pipeline_complete' | 'pipeline_error';
   stepId?: string;
   status?: AgentStatus;
+  progress?: number;
   data?: unknown;
   error?: string;
 }

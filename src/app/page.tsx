@@ -22,12 +22,12 @@ import type {
 } from '@/lib/types';
 
 const INITIAL_STEPS: AgentStep[] = [
-  { id: 'script', name: 'Script Writer', icon: '✍️', status: 'waiting', description: 'Crafting viral script with hook, narrative & CTA' },
-  { id: 'scenes', name: 'Scene Director', icon: '🎬', status: 'waiting', description: 'Creating cinematic scene prompts' },
-  { id: 'storyboard', name: 'Storyboard Generator', icon: '🎨', status: 'waiting', description: 'Generating visual storyboard frames' },
-  { id: 'video', name: 'Video Producer', icon: '🎥', status: 'waiting', description: 'Animating scenes into video clips' },
-  { id: 'audio', name: 'Audio Producer', icon: '🔊', status: 'waiting', description: 'Creating narration & sound effects' },
-  { id: 'viral', name: 'Viral Optimizer', icon: '📈', status: 'waiting', description: 'Analyzing viral potential & scoring' },
+  { id: 'script', name: 'Script Writer', icon: '✍️', status: 'waiting', progress: 0, description: 'Crafting viral script with hook, narrative & CTA' },
+  { id: 'scenes', name: 'Scene Director', icon: '🎬', status: 'waiting', progress: 0, description: 'Creating cinematic scene prompts' },
+  { id: 'storyboard', name: 'Storyboard Generator', icon: '🎨', status: 'waiting', progress: 0, description: 'Generating visual storyboard frames' },
+  { id: 'video', name: 'Video Producer', icon: '🎥', status: 'waiting', progress: 0, description: 'Animating scenes into video clips' },
+  { id: 'audio', name: 'Audio Producer', icon: '🔊', status: 'waiting', progress: 0, description: 'Creating narration & sound effects' },
+  { id: 'viral', name: 'Viral Optimizer', icon: '📈', status: 'waiting', progress: 0, description: 'Analyzing viral potential & scoring' },
 ];
 
 export default function HomePage() {
@@ -77,11 +77,17 @@ export default function HomePage() {
 
             switch (event.type) {
               case 'step_update':
-                if (event.stepId && event.status) {
+                if (event.stepId) {
                   setSteps((prev) =>
-                    prev.map((s) =>
-                      s.id === event.stepId ? { ...s, status: event.status! } : s
-                    )
+                    prev.map((s) => {
+                      if (s.id !== event.stepId) return s;
+
+                      return {
+                        ...s,
+                        status: event.status ?? s.status,
+                        progress: event.progress ?? s.progress,
+                      };
+                    })
                   );
                 }
                 break;
@@ -132,7 +138,7 @@ export default function HomePage() {
       setIsGenerating(true);
       setPipelineVisible(true);
       setErrorMessage(null);
-      setSteps(INITIAL_STEPS.map((s) => ({ ...s, status: 'waiting' as const })));
+      setSteps(INITIAL_STEPS.map((s) => ({ ...s, status: 'waiting' as const, progress: 0 })));
       setScript(null);
       setStoryboard([]);
       setVideos([]);
@@ -177,7 +183,7 @@ export default function HomePage() {
 
     setIsImproving(true);
     setErrorMessage(null);
-    setSteps(INITIAL_STEPS.map((s) => ({ ...s, status: 'waiting' as const })));
+    setSteps(INITIAL_STEPS.map((s) => ({ ...s, status: 'waiting' as const, progress: 0 })));
 
     try {
       const response = await fetch('/api/improve', {

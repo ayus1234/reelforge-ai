@@ -41,9 +41,16 @@ function getStatusColor(status: AgentStatus): string {
   }
 }
 
+function getStepProgress(step: AgentStep): number {
+  if (step.status === 'complete') return 100;
+  if (step.status === 'waiting') return 0;
+  return Math.min(Math.max(Math.round(step.progress), 0), 100);
+}
+
 function StepCard({ step, index }: { step: AgentStep; index: number }) {
   const isActive = step.status === 'running';
   const isComplete = step.status === 'complete';
+  const progress = getStepProgress(step);
 
   return (
     <motion.div
@@ -127,6 +134,48 @@ function StepCard({ step, index }: { step: AgentStep; index: number }) {
         >
           {step.description}
         </p>
+        <div
+          className="progress-bar"
+          style={{
+            height: 4,
+            marginTop: 'var(--space-xs)',
+            background: 'rgba(255, 255, 255, 0.06)',
+          }}
+        >
+          <motion.div
+            className="fill"
+            initial={false}
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+            style={{
+              background: isComplete
+                ? 'var(--accent-success)'
+                : step.status === 'error'
+                ? 'var(--accent-secondary)'
+                : 'var(--gradient-primary)',
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Percentage */}
+      <div
+        style={{
+          minWidth: 52,
+          textAlign: 'right',
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.85rem',
+          fontWeight: 700,
+          color: isComplete
+            ? 'var(--accent-success)'
+            : isActive
+            ? 'var(--accent-primary-light)'
+            : step.status === 'error'
+            ? 'var(--accent-secondary)'
+            : 'var(--text-tertiary)',
+        }}
+      >
+        {progress}%
       </div>
 
       {/* Status Icon */}
@@ -140,7 +189,7 @@ export default function AgentPipeline({ steps, visible }: AgentPipelineProps) {
 
   const completedCount = steps.filter((s) => s.status === 'complete').length;
   const totalSteps = steps.length;
-  const progressPercent = (completedCount / totalSteps) * 100;
+  const progressPercent = steps.reduce((sum, step) => sum + getStepProgress(step), 0) / totalSteps;
 
   return (
     <AnimatePresence>
@@ -182,7 +231,7 @@ export default function AgentPipeline({ steps, visible }: AgentPipelineProps) {
               fontFamily: 'var(--font-mono)',
             }}
           >
-            {completedCount}/{totalSteps} agents complete
+            {Math.round(progressPercent)}% complete • {completedCount}/{totalSteps} agents
           </span>
         </div>
 

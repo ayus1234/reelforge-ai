@@ -36,7 +36,7 @@ The app is built for creator-style reels with real-time pipeline progress and fo
 
 ## Features
 
-- Six-step AI creative pipeline with Server-Sent Events progress updates.
+- Six-step AI creative pipeline with Server-Sent Events progress updates and per-agent completion percentages.
 - Script generation with hook, narrative, CTA, scene dialogue, and narration timing.
 - Scene prompt generation for cinematic visual direction.
 - Runway image and video generation with limited concurrency and retry/fallback behavior.
